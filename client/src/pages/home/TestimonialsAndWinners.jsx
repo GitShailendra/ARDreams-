@@ -12,10 +12,12 @@ import {
 } from 'lucide-react';
 
 import tiago from "../../assets/Images/prizes/Tiago.png";
+import goldImage from "../../assets/Images/prizes/gold.png";
 import yt from "../../assets/Images/prizes/yt.png";
 
 const TestimonialsAndWinners = () => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isChanging, setIsChanging] = useState(false);
 
   const testimonials = [
     {
@@ -23,14 +25,16 @@ const TestimonialsAndWinners = () => {
       prize: "Tata Tiago",
       month: "January 2024",
       comment: "Never thought I would win a car! ARdreams made my dream come true. The process was transparent and professional.",
-      rating: 5
+      rating: 5,
+      image: tiago
     },
     {
       name: "Priya M",
       prize: "1L Gold",
       month: "December 2023",
       comment: "Winning gold was a blessing. The team helped with everything from documentation to delivery. Highly recommended!",
-      rating: 5
+      rating: 5,
+      image: goldImage
     }
   ];
 
@@ -40,6 +44,18 @@ const TestimonialsAndWinners = () => {
     { label: "Monthly Winners", value: "25", icon: Users },
     { label: "Success Rate", value: "100%", icon: Target }
   ];
+
+  const handleSlideChange = (direction) => {
+    setIsChanging(true);
+    setTimeout(() => {
+      if (direction === 'next') {
+        setActiveSlide(prev => Math.min(testimonials.length - 1, prev + 1));
+      } else {
+        setActiveSlide(prev => Math.max(0, prev - 1));
+      }
+      setTimeout(() => setIsChanging(false), 50);
+    }, 300);
+  };
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
@@ -67,14 +83,18 @@ const TestimonialsAndWinners = () => {
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-400 rounded-2xl transform -rotate-6 scale-105 opacity-20 group-hover:opacity-30 transition-all duration-300"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src={tiago} 
-                  alt={`${testimonials[activeSlide].name} with their prize`}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full shadow-lg flex items-center space-x-2">
-                  <Trophy className="w-5 h-5 text-orange-500" />
-                  <span className="font-semibold">{testimonials[activeSlide].prize}</span>
+                <div className={`transition-all duration-300 ease-in-out transform ${
+                  isChanging ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                }`}>
+                  <img 
+                    src={testimonials[activeSlide].image}
+                    alt={`${testimonials[activeSlide].name} with their prize`}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full shadow-lg flex items-center space-x-2">
+                    <Trophy className="w-5 h-5 text-orange-500" />
+                    <span className="font-semibold">{testimonials[activeSlide].prize}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -106,8 +126,8 @@ const TestimonialsAndWinners = () => {
               {/* Navigation Controls */}
               <div className="flex items-center space-x-4">
                 <button
-                  onClick={() => setActiveSlide(prev => Math.max(0, prev - 1))}
-                  disabled={activeSlide === 0}
+                  onClick={() => handleSlideChange('prev')}
+                  disabled={activeSlide === 0 || isChanging}
                   className="p-3 rounded-full hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   aria-label="Previous testimonial"
                 >
@@ -117,8 +137,8 @@ const TestimonialsAndWinners = () => {
                   {activeSlide + 1} / {testimonials.length}
                 </div>
                 <button
-                  onClick={() => setActiveSlide(prev => Math.min(testimonials.length - 1, prev + 1))}
-                  disabled={activeSlide === testimonials.length - 1}
+                  onClick={() => handleSlideChange('next')}
+                  disabled={activeSlide === testimonials.length - 1 || isChanging}
                   className="p-3 rounded-full hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   aria-label="Next testimonial"
                 >

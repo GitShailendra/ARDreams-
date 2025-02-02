@@ -8,11 +8,21 @@ import ContactCTA from './ContactCTA';
 const HomePage = () => {
   return (
     <div className="min-h-screen">
-      <Hero />
-      <PrizeShowcase />
-      <WhyChooseUs />
-      <TestimonialsAndWinners />
-      <ContactCTA />
+      <section id="home">
+        <Hero />
+      </section>
+      <section id="about-us">
+        <PrizeShowcase />
+      </section>
+      <section id="prize-schemes">
+        <WhyChooseUs />
+      </section>
+      <section id="how-it-works">
+        <TestimonialsAndWinners />
+      </section>
+      <section id="contact">
+        <ContactCTA />
+      </section>
     </div>
   );
 };
