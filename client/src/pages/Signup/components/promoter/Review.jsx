@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Check, AlertCircle } from 'lucide-react';
 
 const Review = ({ formData = {}, updateForm }) => {
@@ -12,6 +12,15 @@ const Review = ({ formData = {}, updateForm }) => {
     return <p className="text-center text-gray-500">Loading...</p>;
   }
 
+  useEffect(() => {
+    // Smooth scroll polyfill
+    window.scrollTo({ top: 0});
+
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+  
   // Sections for review
   const sections = [
     {

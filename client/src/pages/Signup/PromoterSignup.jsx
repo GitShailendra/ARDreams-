@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, MapPin, FileText, CreditCard, CheckCircle, Loader, X } from 'lucide-react';
 import PersonalDetails from './components/promoter/PersonalDetails';
@@ -55,6 +55,14 @@ const PromoterSignup = () => {
       }, 5000);
     }, 2000);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
 
   const renderStep = () => {
     switch (step) {

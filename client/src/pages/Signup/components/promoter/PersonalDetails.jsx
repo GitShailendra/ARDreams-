@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Mail, Phone, Calendar, Users, CheckCircle, Loader } from 'lucide-react';
 
 const PersonalDetails = ({ formData = {}, updateForm }) => {
@@ -18,6 +18,14 @@ const PersonalDetails = ({ formData = {}, updateForm }) => {
   const handleUpdate = (field, value) => {
     updateForm?.(field, value);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
 
   const handleSendOTP = () => {
     if (!formData.mobile || formData.mobile.length !== 10) return;

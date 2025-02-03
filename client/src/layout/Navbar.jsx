@@ -13,8 +13,8 @@ const Navbar = () => {
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center cursor-pointer">
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-white">AR</span>
-                  <span className="text-2xl font-semibold text-[#F7A31C]">Dreams</span>
+                  <span className="text-2xl font-bold text-white">ARD</span>
+                  <span className="text-2xl font-semibold text-[#F7A31C]">Groups</span>
                   <div className="hidden sm:block bg-[#FFD700] text-[#1F2937] text-xs font-bold px-2 py-1 rounded-full ml-2">
                     Season 1
                   </div>
@@ -28,7 +28,7 @@ const Navbar = () => {
                 {['Home', 'About Us', 'Prize Schemes', 'How It Works', 'Contact'].map((item) => (
                   <a
                     key={item}
-                    href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-gray-300 hover:text-[#F7A31C] px-3 py-2 text-sm xl:text-lg font-medium transition-colors duration-200"
                   >
                     {item}

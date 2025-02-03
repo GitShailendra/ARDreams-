@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, AlertCircle } from 'lucide-react';
 
 const Address = ({ formData = {}, updateForm }) => {
@@ -27,6 +27,14 @@ const Address = ({ formData = {}, updateForm }) => {
     "Bihar", "West Bengal", "Assam", "Punjab", "Haryana", "Delhi"
   ];
 
+  useEffect(() => {
+      window.scrollTo({ top: 0 });
+  
+      return () => {
+        document.documentElement.style.scrollBehavior = 'auto';
+      };
+  }, []);
+
   const handlePermanentChange = (field, value) => {
     const newAddress = {
       ...initialFormData.permanentAddress,
@@ -48,10 +56,14 @@ const Address = ({ formData = {}, updateForm }) => {
 
   const handleSameAddress = (e) => {
     updateForm?.('sameAsPermanent', e.target.checked);
-    if (e.target.checked) {
-      updateForm?.('currentAddress', initialFormData.permanentAddress);
-    }
   };
+
+  // useEffect to sync currentAddress when sameAsPermanent is checked
+  useEffect(() => {
+    if (formData.sameAsPermanent) {
+      updateForm?.('currentAddress', formData.permanentAddress);
+    }
+  }, [formData.sameAsPermanent, formData.permanentAddress]);
 
   const inputClasses = "w-full px-4 py-3 sm:py-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F7A31C] focus:border-transparent bg-white transition-all duration-200 hover:border-[#F7A31C] placeholder:text-gray-400 text-sm sm:text-base";
   const labelClasses = "block text-gray-700 text-sm sm:text-base font-medium mb-2";

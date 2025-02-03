@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Landmark, Search, AlertCircle, Upload, Check, X } from 'lucide-react';
 
 const BankDetails = ({ formData = {}, updateForm }) => {
@@ -30,6 +30,14 @@ const BankDetails = ({ formData = {}, updateForm }) => {
       setIsValidating(false);
     }
   };
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
 
   // Handle bank document upload
   const handleFileUpload = (file) => {

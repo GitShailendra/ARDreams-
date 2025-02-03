@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Upload, X, Check, Image } from 'lucide-react';
 
 const Documents = ({ formData = {}, updateForm }) => {
@@ -69,6 +69,14 @@ const Documents = ({ formData = {}, updateForm }) => {
   const removeFile = (documentId) => {
     updateForm?.(documentId, null);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
 
   // Safe URL creation with cleanup
   const getFilePreview = (file) => {
