@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav className="bg-gradient-to-r from-[#1F2937] to-[#2C3E50] shadow-lg fixed w-full z-50">
       <div className="relative">
         <div className="max-w-7xl xl:max-w-[75vw] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex justify-between h-20">
+          <div className="flex justify-between h-20 md:h-24">
             {/* Logo Section */}
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center cursor-pointer">
@@ -92,7 +92,7 @@ const Navbar = () => {
               ))}
               <div className="pt-6 border-t border-gray-700">
                 <a 
-                  href="/login"
+                  href="/Login"
                   className="block w-full text-gray-300 hover:text-[#F7A31C] py-3 text-lg font-medium transition-colors duration-200"
                 >
                   Login
