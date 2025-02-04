@@ -1,15 +1,27 @@
-import React from 'react';
-import Sidebar from '../components/shared/Sidebar';
+// src/pages/Dashboard/CustomerDashboard/layout/PromoterDashboardLayout.jsx
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import DashboardSidebar from '../Shared/DashboardSidebar';
+import DashboardHeader from '../Shared/DashboardHeader';
 
 const PromoterDashboardLayout = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-[#1F2937] flex">
-      <Sidebar />
-      <div className="flex-1 ml-64">
-        <div className="p-8">
-          <Outlet />
-        </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Sidebar */}
+      <DashboardSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+      
+      {/* Main Content */}
+      <div className="lg:pl-64 flex flex-col min-h-screen mb-14">
+        <DashboardHeader toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+        
+        {/* Page Content */}
+        <main className="flex-1 p-6 mt-24">
+          <div className="max-w-7xl mx-auto">
+            <Outlet />
+          </div>
+        </main>
       </div>
     </div>
   );
