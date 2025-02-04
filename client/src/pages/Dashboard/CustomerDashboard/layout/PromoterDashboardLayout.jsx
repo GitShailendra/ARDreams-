@@ -1,4 +1,3 @@
-// src/pages/Dashboard/CustomerDashboard/layout/PromoterDashboardLayout.jsx
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import DashboardSidebar from '../Shared/DashboardSidebar';
@@ -13,11 +12,11 @@ const PromoterDashboardLayout = () => {
       <DashboardSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
       
       {/* Main Content */}
-      <div className="lg:pl-64 flex flex-col min-h-screen mb-14">
+      <div className="lg:pl-64 flex flex-col min-h-screen">
         <DashboardHeader toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
-        
+
         {/* Page Content */}
-        <main className="flex-1 p-6 mt-24">
+        <main className="flex-1 p-6 mt-24 overflow-y-auto">
           <div className="max-w-7xl mx-auto">
             <Outlet />
           </div>

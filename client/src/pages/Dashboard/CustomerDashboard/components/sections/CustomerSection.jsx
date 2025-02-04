@@ -1,9 +1,14 @@
-// pages/Dashboard/components/sections/CustomerSection.jsx
 import React, { useState } from 'react';
 import { Search, Filter, UserPlus, FileCheck, AlertTriangle, CheckCircle, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const CustomerSection = () => {
- const [activeTab, setActiveTab] = useState('all');
+  const [activeTab, setActiveTab] = useState('all');
+  const navigate = useNavigate();
+
+  const handleViewDetails = (customerId) => {
+    navigate(`/dashboard/promoter/customers/${customerId}`);
+  };
  
  return (
    <div className="space-y-6">
@@ -73,42 +78,48 @@ const CustomerSection = () => {
            </tr>
          </thead>
          <tbody className="divide-y divide-gray-200">
-           {[...Array(5)].map((_, idx) => (
-             <tr key={idx} className="hover:bg-gray-50">
-               <td className="px-6 py-4">
-                 <div className="flex items-center">
-                   <div className="h-10 w-10 rounded-full bg-gray-200"></div>
-                   <div className="ml-4">
-                     <div className="text-sm font-medium text-gray-900">Customer Name</div>
-                     <div className="text-sm text-gray-500">ID: AR001{idx}</div>
-                   </div>
-                 </div>
-               </td>
-               <td className="px-6 py-4">
-                 <span className="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
-                   Active
-                 </span>
-               </td>
-               <td className="px-6 py-4">
-                 <span className="flex items-center text-sm">
-                   <FileCheck className="w-4 h-4 mr-1.5 text-green-500" />
-                   Verified
-                 </span>
-               </td>
-               <td className="px-6 py-4">
-                 <div>
-                   <div className="text-sm text-gray-900">₹1,000</div>
-                   <div className="text-sm text-gray-500">Jan 15, 2024</div>
-                 </div>
-               </td>
-               <td className="px-6 py-4">
-                 <button className="text-[#F7A31C] hover:text-[#E69016] text-sm font-medium">
-                   View Details
-                 </button>
-               </td>
-             </tr>
-           ))}
-         </tbody>
+        {[...Array(5)].map((_, idx) => {
+          const customerId = `AR001${idx}`;
+          return (
+            <tr key={idx} className="hover:bg-gray-50">
+              <td className="px-6 py-4">
+                <div className="flex items-center">
+                  <div className="h-10 w-10 rounded-full bg-gray-200"></div>
+                  <div className="ml-4">
+                    <div className="text-sm font-medium text-gray-900">Customer Name</div>
+                    <div className="text-sm text-gray-500">ID: {customerId}</div>
+                  </div>
+                </div>
+              </td>
+              <td className="px-6 py-4">
+                <span className="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                  Active
+                </span>
+              </td>
+              <td className="px-6 py-4">
+                <span className="flex items-center text-sm">
+                  <FileCheck className="w-4 h-4 mr-1.5 text-green-500" />
+                  Verified
+                </span>
+              </td>
+              <td className="px-6 py-4">
+                <div>
+                  <div className="text-sm text-gray-900">₹1,000</div>
+                  <div className="text-sm text-gray-500">Jan 15, 2024</div>
+                </div>
+              </td>
+              <td className="px-6 py-4">
+                <button 
+                  onClick={() => handleViewDetails(customerId)}
+                  className="text-[#F7A31C] hover:text-[#E69016] text-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-[#F7A31C] focus:ring-offset-2 rounded"
+                >
+                  View Details
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
        </table>
      </div>
 

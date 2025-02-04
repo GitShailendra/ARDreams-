@@ -9,11 +9,14 @@ import PromoterDashboardLayout from './pages/Dashboard/CustomerDashboard/layout/
 
 // Import Dashboard Components
 import Overview from './pages/Dashboard/CustomerDashboard/components/sections/OverviewSection';
-import Customers from './pages/Dashboard/CustomerDashboard/components/sections/CustomerSection';
 import Earnings from './pages/Dashboard/CustomerDashboard/components/sections/Earnings';
 import LevelStatus from './pages/Dashboard/CustomerDashboard/components/sections/LevelStatus';
 import Profile from './pages/Dashboard/CustomerDashboard/components/sections/Profile';
 import Support from './pages/Dashboard/CustomerDashboard/components/sections/Support';
+import CustomerDetails from './pages/Dashboard/CustomerDashboard/components/sections/CustomerDetails';
+
+// Import Customers Component (define it if it doesn't exist)
+import Customers from './pages/Dashboard/CustomerDashboard/components/sections/CustomerSection'; // Make sure this file exists
 
 const App = () => {
   return (
@@ -28,9 +31,10 @@ const App = () => {
         </Route>
 
         {/* Dashboard Routes */}
-        <Route path="/dashboard/Promoter" element={<PromoterDashboardLayout />}>
+        <Route path="/dashboard" element={<PromoterDashboardLayout />}>
           <Route index element={<Overview />} />
           <Route path="customers" element={<Customers />} />
+          <Route path="customers/:id" element={<CustomerDetails />} />
           <Route path="earnings" element={<Earnings />} />
           <Route path="levels" element={<LevelStatus />} />
           <Route path="profile" element={<Profile />} />
