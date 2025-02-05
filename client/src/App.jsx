@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/dashboard" element={<PromoterDashboardLayout />}>
           <Route index element={<Overview />} />
           <Route path="customers" element={<Customers />} />
-          <Route path="customers/:id" element={<CustomerDetails />} />
+          <Route path="promoter/customers/:id" element={<CustomerDetails />} />
           <Route path="earnings" element={<Earnings />} />
           <Route path="levels" element={<LevelStatus />} />
           <Route path="profile" element={<Profile />} />
