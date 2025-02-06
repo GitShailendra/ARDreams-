@@ -5,18 +5,18 @@ import HomePage from './pages/home/HomePage';
 import SignupChoice from './pages/Signup/SignupChoice';
 import PromoterSignup from './pages/Signup/PromoterSignup';
 import Login from './pages/login/Login';
-import PromoterDashboardLayout from './pages/Dashboard/CustomerDashboard/layout/PromoterDashboardLayout';
+import PromoterDashboardLayout from './pages/Dashboard/PromoterDashboard/layout/PromoterDashboardLayout';
 
 // Import Dashboard Components
-import Overview from './pages/Dashboard/CustomerDashboard/components/sections/OverviewSection';
-import Earnings from './pages/Dashboard/CustomerDashboard/components/sections/Earnings';
-import LevelStatus from './pages/Dashboard/CustomerDashboard/components/sections/LevelStatus';
-import Profile from './pages/Dashboard/CustomerDashboard/components/sections/Profile';
-import Support from './pages/Dashboard/CustomerDashboard/components/sections/Support';
-import CustomerDetails from './pages/Dashboard/CustomerDashboard/components/sections/CustomerDetails';
+import Overview from './pages/Dashboard/PromoterDashboard/components/sections/OverviewSection';
+import Earnings from './pages/Dashboard/PromoterDashboard/components/sections/Earnings';
+import LevelStatus from './pages/Dashboard/PromoterDashboard/components/sections/LevelStatus';
+import Profile from './pages/Dashboard/PromoterDashboard/components/sections/Profile';
+import Support from './pages/Dashboard/PromoterDashboard/components/sections/Support';
+import CustomerDetails from './pages/Dashboard/PromoterDashboard/components/sections/CustomerDetails';
 
 // Import Customers Component (define it if it doesn't exist)
-import Customers from './pages/Dashboard/CustomerDashboard/components/sections/CustomerSection'; // Make sure this file exists
+import Customers from './pages/Dashboard/PromoterDashboard/components/sections/CustomerSection'; // Make sure this file exists
 
 const App = () => {
   return (
