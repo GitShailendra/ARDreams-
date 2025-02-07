@@ -1,7 +1,8 @@
 import React from 'react';
 import { Activity, Users, FileText, Gift } from 'lucide-react';
-
-export const OverviewSection = () => {
+import  ActivityWidget  from '../widget/ActivityWidget';
+import  KYCVerificationWidget  from '../widget/KYCVerficationWidget';
+ const OverviewSection = () => {
   const stats = [
     {
       title: 'Total Promoters',
@@ -68,3 +69,5 @@ export const OverviewSection = () => {
     </div>
   );
 };
+
+export default OverviewSection;

@@ -56,3 +56,4 @@ export const CustomerSection = () => {
     </div>
   );
 };
+export default CustomerSection

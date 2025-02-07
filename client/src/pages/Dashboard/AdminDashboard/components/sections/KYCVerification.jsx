@@ -30,3 +30,4 @@ export const KYCVerification = () => {
     </div>
   );
 };
+export default KYCVerification

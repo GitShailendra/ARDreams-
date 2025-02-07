@@ -17,7 +17,20 @@ import CustomerDetails from './pages/Dashboard/PromoterDashboard/components/sect
 
 // Import Customers Component (define it if it doesn't exist)
 import Customers from './pages/Dashboard/PromoterDashboard/components/sections/CustomerSection'; // Make sure this file exists
+//Admin Dashboard components import
+import AdminDashboard from './pages/Dashboard/AdminDashboard/layout/AdminDashboard'
+import AdminOverview from './pages/Dashboard/AdminDashboard/components/sections/OverviewSection';
+import Promoters from './pages/Dashboard/AdminDashboard/components/sections/Promoters';
+import { Prizes } from './pages/Dashboard/AdminDashboard/components/sections/Prizes';
+import CustomerSection from './pages/Dashboard/AdminDashboard/components/sections/CustomerSection';
+import KYCVerification from './pages/Dashboard/AdminDashboard/components/sections/KYCVerification';
+import Transactions from './pages/Dashboard/AdminDashboard/components/sections/Transactions';
+import Analytics from './pages/Dashboard/AdminDashboard/components/sections/Analytics';
+import AdminSettings from './pages/Dashboard/AdminDashboard/components/sections/Settings';
+import AdminSupport from './pages/Dashboard/AdminDashboard/components/sections/AdminSupport'
 
+//Customer Management
+import CustomerDashboard from './pages/Dashboard/CustomerDashboard/CustomerManagement';
 const App = () => {
   return (
     <Router>
@@ -31,15 +44,29 @@ const App = () => {
         </Route>
 
         {/* Dashboard Routes */}
-        <Route path="/dashboard" element={<PromoterDashboardLayout />}>
+        <Route path="/dashboard/promoter" element={<PromoterDashboardLayout />}>
           <Route index element={<Overview />} />
           <Route path="customers" element={<Customers />} />
-          <Route path="promoter/customers/:id" element={<CustomerDetails />} />
+          <Route path="customers/:id" element={<CustomerDetails />} />
           <Route path="earnings" element={<Earnings />} />
           <Route path="levels" element={<LevelStatus />} />
           <Route path="profile" element={<Profile />} />
           <Route path="support" element={<Support />} />
         </Route>
+
+        {/* Admin Dashboard Routes */}
+        <Route path="/dashboard/admin" element={<AdminDashboard />}>
+        <Route index element={<AdminOverview />} />
+        <Route path='promoters' element={<Promoters/>}/>
+        <Route path='prizes' element={<Prizes/>}/>
+        <Route path='customers' element={<CustomerSection/>}/>
+        <Route path='kyc' element={<KYCVerification/>}/>
+        <Route path='transactions' element={<Transactions/>}/>
+        <Route path='analytics' element={<Analytics/>}/>
+        <Route path='settings' element={<AdminSettings/>}/>
+        <Route path='support' element={<AdminSupport/>}/>
+        </Route>
+        <Route path='/customer' element={<CustomerDashboard/>}/>
 
         {/* 404 Route */}
         <Route

@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 
 const DashboardSidebar = ({ isOpen, setIsOpen }) => {
     const navItems = [
-      { path: '/dashboard', icon: Home, label: 'Overview' },
-      { path: '/dashboard/customers', icon: Users, label: 'Customers' },
-      { path: '/dashboard/earnings', icon: WalletCards, label: 'Earnings' },
-      { path: '/dashboard/levels', icon: Award, label: 'Level Status' },
-      { path: '/dashboard/profile', icon: User, label: 'Profile' },
-      { path: '/dashboard/support', icon: LifeBuoy, label: 'Support' }
+      { path: '/dashboard/promoter', icon: Home, label: 'Overview' },
+      { path: '/dashboard/promoter/customers', icon: Users, label: 'Customers' },
+      { path: '/dashboard/promoter/earnings', icon: WalletCards, label: 'Earnings' },
+      { path: '/dashboard/promoter/levels', icon: Award, label: 'Level Status' },
+      { path: '/dashboard/promoter/profile', icon: User, label: 'Profile' },
+      { path: '/dashboard/promoter/support', icon: LifeBuoy, label: 'Support' }
     ];
   
     return (

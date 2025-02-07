@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { 
   Users, Activity, Gift, FileText, Settings, 
   LogOut, Menu, Bell, ChevronDown, Search,
@@ -7,57 +8,74 @@ import {
 
 const AdminDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [selectedNavItem, setSelectedNavItem] = useState('overview');
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get current path without /dashboard/admin/
+  const currentPath = location.pathname.split('/').pop() || 'overview';
 
   const navItems = [
     {
       id: 'overview',
       label: 'Overview',
       icon: <Activity className="w-5 h-5" />,
+      path: '/dashboard/admin'
     },
     {
       id: 'promoters',
       label: 'Promoters',
       icon: <Users className="w-5 h-5" />,
-      badge: 12 // Pending verifications
+      badge: 12,
+      path: '/dashboard/admin/promoters'
     },
     {
       id: 'customers',
       label: 'Customers',
       icon: <UserCheck className="w-5 h-5" />,
+      path: '/dashboard/admin/customers'
     },
     {
       id: 'prizes',
       label: 'Prize Management',
       icon: <Gift className="w-5 h-5" />,
+      path: '/dashboard/admin/prizes'
     },
     {
       id: 'kyc',
       label: 'KYC Verification',
       icon: <FileText className="w-5 h-5" />,
-      badge: 48 // Pending KYC
+      badge: 48,
+      path: '/dashboard/admin/kyc'
     },
     {
       id: 'transactions',
       label: 'Transactions',
       icon: <Wallet className="w-5 h-5" />,
+      path: '/dashboard/admin/transactions'
     },
     {
       id: 'analytics',
       label: 'Analytics',
       icon: <BarChart className="w-5 h-5" />,
+      path: '/dashboard/admin/analytics'
     },
     {
       id: 'settings',
       label: 'Settings',
       icon: <Settings className="w-5 h-5" />,
+      path: '/dashboard/admin/settings'
     },
     {
       id: 'support',
       label: 'Support',
       icon: <HelpCircle className="w-5 h-5" />,
+      path: '/dashboard/admin/support'
     }
   ];
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -122,11 +140,11 @@ const AdminDashboard = () => {
               <button
                 key={item.id}
                 className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-left ${
-                  selectedNavItem === item.id
+                  currentPath === item.id
                     ? 'bg-orange-50 text-orange-500'
                     : 'text-gray-600 hover:bg-gray-50'
                 }`}
-                onClick={() => setSelectedNavItem(item.id)}
+                onClick={() => handleNavigation(item.path)}
               >
                 <div className="flex items-center space-x-3">
                   {item.icon}
@@ -161,7 +179,7 @@ const AdminDashboard = () => {
           {/* Breadcrumb */}
           <div className="mb-6">
             <h1 className="text-2xl font-semibold text-gray-900">
-              {navItems.find(item => item.id === selectedNavItem)?.label}
+              {navItems.find(item => item.id === currentPath)?.label || 'Overview'}
             </h1>
             <p className="text-sm text-gray-500">
               Welcome to AR Dreams admin dashboard
@@ -170,7 +188,7 @@ const AdminDashboard = () => {
 
           {/* Content Area */}
           <div className="space-y-6">
-            {/* Content components will be rendered here based on selectedNavItem */}
+            <Outlet />
           </div>
         </div>
       </main>
